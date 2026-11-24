@@ -1,20 +1,15 @@
--- ==============================================================================
 -- PROJETO: Sistema de Biblioteca
--- ARQUIVO: script-ddl.sql (Data Definition Language)
--- OBJETIVO: Criação da estrutura do banco de dados, tabelas e restrições.
--- ==============================================================================
 
--- 1. Tabela: CATEGORIA
--- Tabela pai, independente.
+-- ARQUIVO: script-ddl.sql 
+
 CREATE TABLE Categoria (
     id_categoria INT PRIMARY KEY,
-    nome VARCHAR(50) NOT NULL UNIQUE, -- Restrição UNIQUE para não ter categorias com mesmo nome
+    nome VARCHAR(50) NOT NULL UNIQUE, 
     descricao VARCHAR(255),
-    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- Restrição DEFAULT para registrar a hora exata
+    data_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
 );
 
--- 2. Tabela: AUTOR
--- Tabela pai, independente.
+
 CREATE TABLE Autor (
     id_autor INT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -22,8 +17,6 @@ CREATE TABLE Autor (
     data_nascimento DATE
 );
 
--- 3. Tabela: EDITORA
--- Tabela pai, independente.
 CREATE TABLE Editora (
     id_editora INT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -31,8 +24,7 @@ CREATE TABLE Editora (
     telefone_contato VARCHAR(20)
 );
 
--- 4. Tabela: USUARIO
--- Tabela pai, independente.
+
 CREATE TABLE Usuario (
     id_usuario INT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -41,8 +33,7 @@ CREATE TABLE Usuario (
     data_cadastro DATE NOT NULL
 );
 
--- 5. Tabela: FUNCIONARIO
--- Tabela pai, independente. (Quem realiza o empréstimo)
+
 CREATE TABLE Funcionario (
     id_funcionario INT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
@@ -50,8 +41,6 @@ CREATE TABLE Funcionario (
     data_admissao DATE
 );
 
--- 6. Tabela: LIVRO
--- Tabela filha. Depende de Categoria, Autor e Editora.
 CREATE TABLE Livro (
     id_livro INT PRIMARY KEY,
     titulo VARCHAR(150) NOT NULL,
@@ -65,8 +54,7 @@ CREATE TABLE Livro (
     FOREIGN KEY (id_editora) REFERENCES Editora(id_editora)
 );
 
--- 7. Tabela: EMPRESTIMO
--- Tabela filha. Depende de Livro, Usuario e Funcionario.
+
 CREATE TABLE Emprestimo (
     id_emprestimo INT PRIMARY KEY,
     id_livro INT NOT NULL,
@@ -81,8 +69,7 @@ CREATE TABLE Emprestimo (
     FOREIGN KEY (id_funcionario) REFERENCES Funcionario(id_funcionario)
 );
 
--- 8. Tabela: MULTA
--- Tabela filha. Depende de Emprestimo.
+
 CREATE TABLE Multa (
     id_multa INT PRIMARY KEY,
     id_emprestimo INT NOT NULL,
