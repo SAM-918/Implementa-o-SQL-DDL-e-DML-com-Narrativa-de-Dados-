@@ -91,16 +91,14 @@ INSERT INTO Emprestimo (id_emprestimo, id_livro, id_usuario, id_funcionario, dat
 INSERT INTO Emprestimo (id_emprestimo, id_livro, id_usuario, id_funcionario, data_retirada, data_devolucao_prevista, data_devolucao_real, status) VALUES
 (5, 4, 5, 3, '2023-02-15', '2023-03-02', '2023-02-20', 'Devolvido');
 
--- ------------------------------------------------------------------------------
+-- 
 -- Cenário 4 — Atrasos e Aplicação de Multas
 -- -- José não devolveu o livro "Duna" no prazo. O sistema gera a multa.
--- ------------------------------------------------------------------------------
 
--- Como o prazo de José venceu em 27/02 e ele não devolveu, a gerente gerou a multa no dia seguinte.
+
 INSERT INTO Multa (id_multa, id_emprestimo, valor, data_geracao, status_pagamento) VALUES
 (1, 1, 5.50, '2023-02-28', 'Pendente');
 
--- (Simulando multas para bater a regra de 5 registros por tabela)
 -- Supondo que outros empréstimos fictícios atrasaram e geraram multas:
 INSERT INTO Multa (id_multa, id_emprestimo, valor, data_geracao, status_pagamento) VALUES
 (2, 2, 2.00, '2023-03-01', 'Pago'),
