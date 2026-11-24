@@ -1,0 +1,1 @@
+# Implementa-o-SQL-DDL-e-DML-com-Narrativa-de-Dados-
